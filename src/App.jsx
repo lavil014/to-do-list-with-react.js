@@ -1,9 +1,21 @@
-import { useState } from 'react'
-import './App.css'
+import { useState, useEffect } from 'react';
+import './App.css';
 
 function App() {
 
-  const [tasks, setTasks] = useState([]);
+  const [tasks, setTasks] = useState(()=>{
+
+    const storedTasks = localStorage.getItem('tasks');
+    return storedTasks ? JSON.parse(storedTasks) : [];
+  });
+
+  useEffect(()=>{
+    localStorage.setItem('tasks', JSON.stringify(tasks));
+  }, [tasks])
+
+
+
+
   const [userTask, setUsertask] = useState('');
   const [errorMessage, setErrormessage] = useState('')
 
@@ -33,7 +45,6 @@ function App() {
     setTasks((tasks.filter((_, i) =>  i !== index )));
   }
 
-  console.log(tasks);
 
   return (
     <div className='mainContainer'>
