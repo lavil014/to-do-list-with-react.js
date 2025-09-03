@@ -37,6 +37,8 @@ function App() {
 
   return (
     <div className='mainContainer'>
+      <h1>Welcome to your to do app !</h1>
+      <h2>Ready to start ?</h2>
       <main>
         <form onSubmit={handleSubmit} action="">
           <input value={userTask} name='taskInput' type="text" onChange={getUserTask}/>
